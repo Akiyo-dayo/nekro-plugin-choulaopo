@@ -1,0 +1,24 @@
+[project]
+name = "nekro-plugin-choulaopo"
+version = "1.0.0"
+description = "NekroAgent 抽老婆插件：从当前 QQ 群成员中抽取今日老婆"
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [{ name = "Akiyo" }]
+
+[project.urls]
+Repository = "https://github.com/Akiyo-dayo/nekro-plugin-choulaopo"
+Changelog = "https://github.com/Akiyo-dayo/nekro-plugin-choulaopo/blob/main/CHANGELOG.md"
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+addopts = "--import-mode=importlib"
+pythonpath = ["."]
+
+[tool.ruff]
+line-length = 128
+target-version = "py310"
