@@ -70,3 +70,6 @@ def test_render_my_wife_and_help():
     help_text = render_help()
     assert "抽老婆" in help_text
     assert "离婚" in help_text
+    assert "抢老婆" in help_text
+    assert "送老婆" in help_text
+    assert "换妻" in help_text

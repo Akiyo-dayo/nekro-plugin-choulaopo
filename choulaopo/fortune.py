@@ -49,6 +49,23 @@ _FLAVORS: dict[str, tuple[str, ...]] = {
 }
 
 
+_STEAL_BASE: dict[str, int] = {
+    "普通": 58,
+    "稀有": 38,
+    "传说": 20,
+    "天命": 8,
+}
+
+
+def steal_success_chance(rarity: str, affinity: int, protected: bool = False) -> int:
+    if protected:
+        return 0
+    base = _STEAL_BASE.get(rarity, 40)
+    affinity = max(0, min(100, int(affinity)))
+    chance = int(base * (1 - affinity / 180.0))
+    return max(5, min(100, chance))
+
+
 def roll_slip(rng: random.Random | None = None) -> FortuneSlip:
     rng = rng or random.Random()
     rarity = rng.choices(list(RARITY_WEIGHTS.keys()), weights=list(RARITY_WEIGHTS.values()), k=1)[0]

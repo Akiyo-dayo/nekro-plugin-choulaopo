@@ -1,7 +1,16 @@
 from __future__ import annotations
 
+import re
+
 _GROUP_KINDS = {"group", "guild"}
 _PRIVATE_KINDS = {"private"}
+_TARGET_PATTERNS = (
+    re.compile(r"\[@id:([^;@\]]+)", re.I),
+    re.compile(r"\[CQ:at,qq=(\d+)", re.I),
+    re.compile(r"(?:@id:|qq=)(\d{5,20})", re.I),
+    re.compile(r"@(\d{5,20})"),
+    re.compile(r"(\d{5,20})"),
+)
 
 
 def _extract_channel(chat_key: str) -> tuple[str, str] | None:
@@ -35,6 +44,17 @@ def parse_group_id(chat_key: str, channel_id: str | None = None) -> str:
     if kind in _PRIVATE_KINDS or not ident:
         raise ValueError("当前不是群聊，抽老婆只支持群聊")
     return ident
+
+
+def parse_target_user(raw: str) -> str:
+    text = (raw or "").strip()
+    if not text:
+        return ""
+    for pattern in _TARGET_PATTERNS:
+        match = pattern.search(text)
+        if match:
+            return match.group(1).strip()
+    return ""
 
 
 def is_group_chat(

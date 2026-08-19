@@ -1,7 +1,7 @@
 [project]
 name = "nekro-plugin-choulaopo"
-version = "1.0.0"
-description = "NekroAgent 抽老婆插件：从当前 QQ 群成员中抽取今日老婆"
+version = "1.1.0"
+description = "NekroAgent 抽老婆插件：从当前 QQ 群成员中抽取今日老婆，支持抢送换宠"
 readme = "README.md"
 requires-python = ">=3.10"
 authors = [{ name = "Akiyo" }]
