@@ -19,7 +19,11 @@ from nekro_agent.api.plugin import (
     SandboxMethodType,
 )
 from nekro_agent.api.schemas import AgentCtx
-from nekro_agent.services.command.schemas import CommandOutputSegment, CommandOutputSegmentType
+
+try:
+    from nekro_agent.api.plugin import CommandOutputSegment, CommandOutputSegmentType
+except ImportError:  # 原版 NA 未从 api.plugin 再导出这两项
+    from nekro_agent.services.command.schemas import CommandOutputSegment, CommandOutputSegmentType
 
 from .chat import is_group_chat, parse_group_id, parse_target_user
 from .members import GroupMember, coerce_member_list, parse_members
@@ -49,7 +53,7 @@ plugin = NekroPlugin(
     name="抽老婆",
     module_name="choulaopo",
     description="从当前 QQ 群成员中抽取今日老婆，支持抢、送、换、宠、保护和复婚。",
-    version="1.1.0",
+    version="1.1.1",
     author="Akiyo",
     url="https://github.com/Akiyo-dayo/nekro-plugin-choulaopo",
     support_adapter=["onebot_v11"],

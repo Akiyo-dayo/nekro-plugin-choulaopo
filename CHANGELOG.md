@@ -1,5 +1,11 @@
 # 更新日志
 
+## 1.1.1（2026-08-21）
+
+同时兼容原版 NekroAgent 和 akiyo 版 NekroAgent。
+
+- 命令输出类型 `CommandOutputSegment` 先从公开 `api.plugin` 导入，原版未再导出时回退到 `services.command.schemas`，避免在官方镜像上加载失败。
+
 ## 1.1.0（2026-08-20）
 
 把抽老婆从「抽一次看笑话」扩成可互相折腾的群戏。
